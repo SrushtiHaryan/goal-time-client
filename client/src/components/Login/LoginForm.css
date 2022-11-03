@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+.login-form-container{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    
+    
+    
+    
+}
+.login-form-input-box{
+    margin-top:2rem;
+    height: 50vh;
+    display:flex;
+    flex-direction:column;
+    /* justify-content:space-between; */
+    gap:1rem;
+    align-items:center;
+    font-size: 2rem;
+}
+.login-form-input-box label{
+    font-family:Prata,sans-serif;
+    
+    font-size: 1.5rem;
+}
+.login-form-input-box input{
+    font-family:Prata,sans-serif;
+    width:25vw;
+    height: 4vh;
+    font-size: 1.5rem;
+    padding:1rem;
+    border-radius: 10px;
+
+}
+.login-form-input-box input:focus{
+    outline:0.5rem solid pink; 
+    border-radius: 10px;
+
+}
+.login-form-input-box button{
+    font-family:Prata,sans-serif;
+    font-weight: bold;
+    width: 27vw;
+    padding:1rem 2rem;
+    font-size:1.5rem;
+    border-radius: 10px;
+    background-color: rgb(0, 183, 255);
+
+}

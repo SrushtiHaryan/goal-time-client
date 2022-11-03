@@ -1,0 +1,12 @@
+.illustration-img-container{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.illustration-img-container img{
+    /* width: 100%; */
+    height: 90vh;
+    object-fit:cover;
+
+}

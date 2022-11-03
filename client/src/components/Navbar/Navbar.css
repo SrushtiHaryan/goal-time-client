@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;1,400&family=Urbanist:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+body {
+  margin: 0;
+  font-family: Prata;
+  overflow-x:hidden;
+
+}
+
+.navbar {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x:hidden;
+}
+.navbar ul {
+  display: flex;
+  flex: 4;
+  list-style: none;
+  gap: 50px;
+  font-size: 20px;
+}
+.navbar li {
+  cursor: pointer;
+}
+.Brand {
+  flex: 1.5;
+  align-items: center;
+  display: flex;
+  height: 2rem;
+
+  gap: 1rem;
+  padding-left: 2rem;
+}
+.Brand-logo svg {
+  font-size: 2rem;
+  
+}
+.Brand-name {
+  font-size: 2rem;
+  font-family: 'Rubik', sans-serif;
+}
+
+.user-profile {
+  display: flex;
+  cursor: pointer;
+  padding-right: 3rem;
+  gap: 2rem;
+
+  /* background-color: blue; */
+}
+.user-profile svg{
+font-size: 2rem;
+
+  /* background-color: blue; */
+}
