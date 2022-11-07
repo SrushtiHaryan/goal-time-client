@@ -1,5 +1,9 @@
 import { React, useState, useEffect, useRef } from 'react'
 import './Timer.css'
+import axios from 'axios';
+
+
+//num of sessions
 
 const Timer = () => {
 
@@ -16,19 +20,43 @@ const Timer = () => {
   let [active, setActive]=useState('');
   // let [active, setActive]=useState('pomodoro');
 
+  
+  let numOfPomo=1;
+
+
   const StartTimer = (e)=>{
     
     e.preventDefault();
-
+    
     setActive('pomodoro');
     setMinutes(pomodoroMinutes);
     setSeconds(pomodoroSeconds);
     
   }
     
-  
+  const getPomoDetails = ()=>{
+    axios.get('http://localhost:3000/pomodoro-timer').then(response=>{
+      console.log(response)
+      // if(response.data.isGoog){
+
+      //   // pomodoroMinutes=response.data.durationPomo;
+      //   // breakMinutes=response.data.durationBreak;
+      //   // numOfPomo = response.data.numsessions;
+      // }
+      
+    });
+  }
+
   useEffect(() => {
-    
+
+    getPomoDetails()
+
+  },[]);
+
+
+  useEffect(() => {
+
+       
     if(active ==='pomodoro' || active ==='break'){
   const timeCounter = 
   setInterval(() => {

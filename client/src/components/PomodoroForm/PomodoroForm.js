@@ -125,9 +125,17 @@ const Form = () => {
             durationPomo : pomodoroDur,
             durationBreak: breakDur,
             numsession:  numSess,
-            numrepetition: numRep
+            numrepetition: numRep,
+            isGoog: true
 
-        });
+        }).then(res=>{
+            
+            axios.post('/pomodoro-timer', res.data)
+
+            if(res.data.redirect=='/pomodoro-timer'){
+                window.location='/pomodoro-timer';
+            }
+        })
 
     }
 
@@ -145,7 +153,7 @@ const Form = () => {
                         <label htmlFor="start_pomo">Start Date
                         </label>
                         <div className="start-pomo-input">
-                            <input type="date" name="dur_pomo" value={startDate} onChange={handleStartDate}></input>
+                            <input type="datetime-local" name="dur_pomo" value={startDate} onChange={handleStartDate}></input>
                         </div>
                     </div>
                     <div className="start-time-pomo">
@@ -161,7 +169,7 @@ const Form = () => {
                         <label htmlFor="end_pomo">End Date
                         </label>
                         <div className="end-pomo-input">
-                            <input type="date" name="dur_break" value={endDate} onChange={handleEndDate} ></input>
+                            <input type="datetime-local"  name="dur_break" value={endDate} onChange={handleEndDate} ></input>
                         </div>
                     </div>
                 </div>

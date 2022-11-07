@@ -66,6 +66,8 @@ const LoginForm = function () {
         
         onSuccess: async response => {
             let res;
+
+            let access_token;
             try {
                 res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
                     headers: {
@@ -73,6 +75,9 @@ const LoginForm = function () {
                     }
                 })
 
+
+                console.log(response)
+                access_token = response.access_token
                 console.log('bombom')
                 console.log(res.data)
             } catch (err) {
@@ -92,6 +97,7 @@ const LoginForm = function () {
             userDetails.email = res.data.email;
             userDetails.propic = res.data.picture;
             userDetails.isGoog = true;
+            userDetails.access_token = access_token;
 
 
             if (userName != "undefined") {
