@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;1,400&family=Urbanist:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+.pomodoro-form-container {
+  background-image: url("../../../public/assets/images/pomodoro-form-bg-4.jpg");
+  display: flex;
+  justify-content: center;
+  font-family: 'Rubik';
+  text-transform:uppercase;
+  object-fit: cover;
+  background-attachment: fixed;
+  background-size: cover;
+  /* height: 100vh; */
+  /* overflow:hidden; */
+}
+.pomodoro-form-container form {
+  margin-top:2rem;
+  margin-bottom:2rem;
+  
+  /* height: 70vh; */
+  display: flex;
+  flex-direction: column;
+  
+  gap: 35px;
+
+  padding: 2rem;
+  font-family: 'Rubik';
+  text-transform:uppercase;
+
+
+background-color: #f5f5dc;
+
+  background: rgba(60, 60, 60, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(27, 27, 27, 0.37);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(168, 168, 168, 0.18);
+}
+.pomodoro-form-container form label {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  gap: 0.7rem;
+  color: white;
+  /* color: #000; */
+  text-align: center;
+  text-shadow:  2px 2px 10px #000;
+}
+
+.duration {
+    
+  /* background-color:blue; */
+  display: flex;
+  flex-direction: row;
+  
+}
+.duration-pomo{
+    display:flex;
+    flex-direction:column;
+    gap:0.8rem;
+    /* width: 150px; */
+    
+}
+.duration-break{
+    display:flex;
+    /* width: 140px; */
+    flex-direction:column;
+    margin-left:4rem;
+    gap:0.8rem;
+}
+.dur-pomo-input, .dur-break-input, .sess-input, .rep-input{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+   
+}
+
+
+
+.pomodoro-form-container  input {
+  font-size: 0.9rem;
+  border: none;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  text-align: center;
+ 
+}
+.pomodoro-form-container  input:focus {
+  
+  outline: 2px solid #27055e;
+  
+}
+
+.range-slider-dur-break .range-slider__thumb[data-lower] {
+  width: 0;
+}
+
+.title-input {
+  text-align:center;
+}
+
+
+
+
+.session-rep{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pomo-dates{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    
+   
+}
+/* .pomo-dates input{
+    margin-left:2rem;
+    
+   
+}
+.pomo-dates .end-date-pomo{
+    margin-left:3.5rem;
+   
+}
+.pomo-dates .start-time-pomo{
+    margin-left:3rem; */
+ 
+/* } */
+
+.dec-button,.inc-button{
+    background-color: rgb(3, 116, 148);
+    width: 0.8rem;
+    height:0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    font-size:1rem;
+    font-weight:bold;
+    padding:0.5rem;
+    border-radius: 25%;
+    color:white;
+    margin: 0 4px;
+    cursor:pointer;
+    border: 1px solid transparent;
+    
+
+}
+.dec-button:active,.inc-button:active{
+    background-color: rgb(2, 138, 176);
+    width: 0.8rem;
+    height:0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    font-size:1rem;
+    font-weight:bold;
+    padding:0.5rem;
+    border-radius: 25%;
+    border: 1px solid black;
+    color:white;
+    margin: 0 4px;
+    cursor:pointer;
+    
+
+}
+
+
+
+.number_sessions,.end-date-pomo,.start-date-pomo,.number_rep,.start-time-pomo{
+    display: flex;
+    flex-direction:column;
+    gap:0.8rem;
+}
+
+.goal-title{
+    text-align: center;
+}
+
+.create-pomodoro-btn{
+    background-color: skyblue;
+    padding: 0.7rem 0.6rem;
+    border:none;
+    width: 12rem;
+    margin-left:12.5rem;
+    border-radius:5px;
+    font-size:0.8rem;
+    transition: all 0.3s ease-in;
+    border:4px inset transparent;
+    font-family: 'Rubik';
+    text-transform:uppercase;
+    font-weight: 500;
+}
+.create-pomodoro-btn:hover{
+    background-color: transparent;
+   
+    border:4px inset skyblue;
+    color:white;
+    
+    border-radius:3px;
+    cursor:pointer;
+    
+}

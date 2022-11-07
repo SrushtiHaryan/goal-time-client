@@ -7,39 +7,39 @@ const Timer = () => {
   let pomodoroSeconds=10;
   let breakMinutes=0;
   let breakSeconds=5;
-  let [minutes, setMinutes] = useState(pomodoroMinutes);
-  let [seconds, setSeconds] = useState(pomodoroSeconds);
+  let [minutes, setMinutes] = useState(0);
+  let [seconds, setSeconds] = useState(0);
 
   // let [breakMinutes, setBreakMinutes] = useState(breakMinutes);
   // let [breakSeconds, setBreakSeconds] = useState(breakSeconds);
   // let [timer, setTimer] = useState('25:00');
-  let [active, setActive]=useState('pomodoro');
+  let [active, setActive]=useState('');
   // let [active, setActive]=useState('pomodoro');
 
+  const StartTimer = (e)=>{
+    
+    e.preventDefault();
+
+    setActive('pomodoro');
+    setMinutes(pomodoroMinutes);
+    setSeconds(pomodoroSeconds);
+    
+  }
+    
+  
   useEffect(() => {
-
-
-  
-    const timeCounter = 
-    setInterval(() => {
-      countDown(minutes, seconds);
-      // setTimer(`${minutes}:${seconds}`)
-    }, 1000);
     
-    return () => clearInterval(timeCounter);
-
+    if(active ==='pomodoro' || active ==='break'){
+  const timeCounter = 
+  setInterval(() => {
+    countDown(minutes, seconds);
+    // setTimer(`${minutes}:${seconds}`)
+  }, 1000);
   
-
-
-  });
-
-  function setStateSynchronous(stateUpdate) {
-    return new Promise(resolve => {
-        setActive(stateUpdate, () => resolve());
-    });
-
-    
+  return () => clearInterval(timeCounter);
 }
+  
+});
 
 // async function setStateAsync() {
 //     // state.count has value of 0
@@ -74,19 +74,20 @@ const setActiveSess=(session) =>{
       if (seconds > 0){ seconds--}
       else if(seconds==0) {
 
-        console.log(active);
+        
 
         if(active==='pomodoro') {
           setActiveSess('break');
           
-          console.log('pomodoro changed to break: '+active);
+          
         }else{ 
           setActiveSess('pomodoro');
         }
        
         
-        minutes = (active=='pomodoro'? pomodoroMinutes:breakMinutes);
-        seconds = (active=='pomodoro'? pomodoroSeconds:breakSeconds);
+        
+        minutes = (active=='pomodoro'? breakMinutes: pomodoroMinutes);
+        seconds = (active=='pomodoro'? breakSeconds:pomodoroSeconds);
         
       };
     }
@@ -104,6 +105,7 @@ const setActiveSess=(session) =>{
         <div className="timer-tag">Completed</div>
       </div>
       <div className="timer" >{minutes<10?"0"+minutes:minutes}:{seconds<10?"0"+seconds:seconds}</div>
+      <button className="start-button" onClick={StartTimer}>Start</button>
 
     </div>
   )

@@ -20,11 +20,11 @@ const Navbar = function () {
             Home
           </li>
         {/* </Link> */}
-        {/* <Link to="/pomodoro-form"> */}
+        <Link to="/pomodoro-form">
           <li>
             Pomodoro
           </li>
-        {/* </Link> */}
+        </Link>
         {/* <Link to="/quick-notes"> */}
           <li>
             QuickNotes
@@ -36,10 +36,12 @@ const Navbar = function () {
           </li>
         {/* </Link> */}
       </ul>
+      <Link to="/login">
       <div className="user-profile">
         
         <HiOutlineUserCircle />
       </div>
+      </Link>
     </div>
   );
 };

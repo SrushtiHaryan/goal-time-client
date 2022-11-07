@@ -25,6 +25,12 @@ body {
 }
 .navbar li {
   cursor: pointer;
+  text-decoration: none;
+}
+.navbar a {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
 }
 .Brand {
   flex: 1.5;
