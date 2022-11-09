@@ -41,7 +41,7 @@ connectDb();
 
 var database = mongoose.connection;
 
-var id, email, image, name, streak, progress, isGoogle;
+var id, email, image, name, streak, progress, isGoogle; //variables are out 
 
 app.post('/login', (req, res) => {
     // res.json({ "message":"connected"})
@@ -59,7 +59,7 @@ app.post('/login', (req, res) => {
     name = req.body.name;
     email = req.body.email;
     image = req.body.propic;
-    
+    isGoogle=req.body.isGoog;
 
     user.name = req.body.name;
     user.email = req.body.email;
@@ -108,15 +108,42 @@ app.post('/pomodoro-form', async (req, res) => {
     // const startDateTime = "";
     // const endDateTime = ;
 
-    const { titlepomo, startdate, enddate, starttime, durationPomo, durationBreak, numsession, numrepetition,isGoog } = req.body;
+    var { titlepomo, startdate, enddate, starttime, durationPomo, durationBreak, numsession, numrepetition,isGoog } = req.body;
 
     pomodoroSessionDetails = req.body;
+    pomodoroSessionDetails.email = email;
 
 //    exceptions:
 //if start date is stale
 // if end date < start date
 
+   
 
+     var changedstartdate=startdate+"T"+starttime+":00+05:30";
+     var changedenddate= enddate;
+
+     changedenddate=changedenddate.replaceAll(':','');
+     changedenddate=changedenddate.replaceAll('-', '');
+     changedenddate=changedenddate.replaceAll('.', '');
+
+    //  const d1=new Date(Date.UTC(startdate.getFullYear(),startdate.getMonth(), startDate.getDay(), starttime.getHours(), starttime.getMinutes(), starttime.getSeconds()));
+     
+
+    
+    //console.log(d1);
+     console.log(changedstartdate);
+     console.log(changedenddate);
+     console.log(new Date(startdate));
+     console.log(starttime);
+     console.log(startdate);
+
+    //  var getYear=startdate.getFullYear();
+    //  var getMonth=startdate.getMonth();
+    //  var getDay=startdate.getDay();
+
+    //  var date_together=getYear+getMonth+getDay;
+
+    //  console.log(date_together)
 
 
     oauth2Client.setCredentials({access_token: ACCESS_TOKEN})
@@ -130,17 +157,55 @@ app.post('/pomodoro-form', async (req, res) => {
             // location: location,
             colorId: 6,
             start: {
-                dateTime: new Date(startdate)
+                dateTime: changedstartdate,
+                // timeZone: "Etc/GMT"
+                timeZone: "Asia/Kolkata" 
             },
             end: {
-                dateTime: new Date(enddate)
-            }
+                dateTime: changedstartdate,
+                // timeZone: "Etc/GMT"
+                timeZone: "Asia/Kolkata"
+            },
+            recurrence: [
+                 'RRULE:FREQ=DAILY;UNTIL='+ changedenddate +';INTERVAL=' + numrepetition
+               ],
+            // reminders: {
+            //     'useDefault': false,
+            //     'overrides': [{
+            //       'method': 'popup',
+            //       'minutes': 10
+            //     }]
+            // }
         }
+       
+        // const { titlepomo, startdate, enddate, starttime, durationPomo, durationBreak, numsession, numrepetition,isGoog } = req.body;
+
     });
 
     console.log(response);
 
+    const pomo_data= new pomodoroSessionsColl();
 
+    pomo_data.goal_title= titlepomo;
+    pomo_data.start_dateTime= new Date(startdate);
+    pomo_data.end_dateTime= new Date(enddate);
+    pomo_data.pomodoro_duration=durationPomo;
+    pomo_data.break_duration=durationBreak;
+    pomo_data.no_sessions= numsession;
+    pomo_data.no_days=numrepetition;
+    pomo_data.name=name;
+    pomo_data.email=email;
+    // pomo_data.status="pending";
+    // pomo_data.email=isGoogle;
+
+    database.collection("pomodorosessions").insertOne(pomo_data, (err, collection) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        console.log("Record inserted successfully ");
+
+    });
 
     let redir = { redirect: "/pomodoro-timer", ...pomodoroSessionDetails };
     return res.json(redir)
@@ -151,11 +216,27 @@ app.post('/pomodoro-form', async (req, res) => {
 app.post('/pomodoro-timer', (req,res)=>{
     console.log(req.body);
 })
+
 app.get('/pomodoro-timer', (req,res)=>{
     console.log("sending pomo dets from backend ")
+
     res.json(pomodoroSessionDetails);
+// })
 })
 
+
+app.get("/userprofile", (req, res)=>{
+res.json({name:name, email:email, image:image, isGoogle:isGoogle});
+
+})
+
+app.post('/user-profile-streak',(req,res)=>{
+
+    const {dOC} = req.body;
+
+   console.log(dOC.entries().length);
+
+})
 app.listen(5000, () => {
     console.log('Server listening on port 5000')
 })

@@ -1,11 +1,31 @@
-import React from "react";
+import {React, useState} from "react";
 import "./Navbar.css";
 import { HiShoppingBag, HiOutlineUserCircle } from "react-icons/hi";
 import { GiStairsGoal} from "react-icons/gi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 const Navbar = function () {
+  let [navigate, setNavigate]=useState("");
+
+  const handleNavigation=()=>{
+    
+    axios.get('http://localhost:3000/userprofile')
+    .then(res=>{
+
+     console.log(res.data.isGoogle);
+      if(res.data.isGoogle){
+        setNavigate("/userprofile");
+      }else{
+        setNavigate("/login");
+
+      }
+    })
+  }
+
+
   return (
     <div className="navbar">
       <div className="Brand">
@@ -16,28 +36,23 @@ const Navbar = function () {
       </div>
       <ul>
         {/* <Link to="/"> */}
-          <li>
+          {/* <li>
             Home
-          </li>
+          </li> */}
         {/* </Link> */}
-        <Link to="/pomodoro-form">
+        <Link to="/pomodoro-timer">
           <li>
             Pomodoro
           </li>
         </Link>
-        {/* <Link to="/quick-notes"> */}
+        <Link to="/quicknotes">
           <li>
             QuickNotes
           </li>
-        {/* </Link> */}
-        {/* <Link to="/about"> */}
-          <li>
-            About Us
-          </li>
-        {/* </Link> */}
+        </Link>
       </ul>
-      <Link to="/login">
-      <div className="user-profile">
+      <Link to={navigate}>
+      <div className="user-profile" onClick={handleNavigation}>
         
         <HiOutlineUserCircle />
       </div>

@@ -1,0 +1,213 @@
+.profile-box{
+    
+    background: rgb(136,238,139);
+    background: radial-gradient(circle, rgba(136,238,139,1) 0%, rgba(125,227,196,0.8076272745426296) 100%);
+    background-image: url('../../../public/assets/images/background-1.jpg');
+    height: 100vh;
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    border: none;
+    }
+    
+    .box{
+        align-items: center;
+        padding-left: 125px;
+        padding-top: 25px;
+        /* border-radius: 100px; */
+    }
+    
+    
+    .box-user{
+        /* position: absolute; */
+        border-radius: 5px;
+        /* border-style: solid; */
+        /* padding-top: 100px; */
+        width: 1000px;
+        height: 500px;
+        /* background-color: white; */
+        background: rgba(0, 0, 0, 0.416);
+        /* left: 200px; */
+        display: flex;
+        flex-direction: row;
+        
+    }
+    
+    
+    
+    .user-details{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .left-side{
+        /* position: absolute; */
+        /* padding-top: 50px; */
+        width: 30%;
+        /* height: 510px; */
+        /* background-color: rgb(95, 204, 204); */
+        /* top: 0%;*/
+        /* border-radius: 10px; */
+        border-right: solid 1.75px black;
+        height: 500px;
+        overflow: hidden;
+    } 
+    
+    .division{
+        border-right: solid 1.75px black;
+        height: 500px;
+    }
+    
+    .right-side{
+        /* background-color: aquamarine; */
+        width: 70%;
+        /* border-radius: 10px; */
+        /* background-color: blue; */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .user-image-box{
+        height: 240px;
+        padding-left: 10px;
+        padding-top: 10px;
+        /* background-color: blanchedalmond;  */
+        /* overflow: hidden;
+        position: relative; */
+        border-radius: 5px;
+    }
+    
+    .user-image{
+        padding-top: 20px;
+        padding-left: 70px;
+        /* background-color: rgb(225, 222, 51); */
+        border-radius: 5px;
+        height: 200px;
+        width: 210px;
+    }
+    .user-image-box .user-image img{
+        /* border-radius: 50%;
+        object-fit: cover;
+        /* width: 135px; */
+        /* left: 100px; *
+        display: inline-block; */
+        /* background-color: brown; */
+        margin-bottom:30px;
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+        -webkit-border-radius: 75px;
+        -moz-border-radius: 75px;
+        display: inline-block;
+    }
+    
+    .user-name{
+        padding-top: 10px;
+        padding-left: 25px;
+        /* height: 230px;
+        background-color: beige;
+        /* display: inline-block;
+        overflow: hidden; 
+        border-radius: 5px;
+        width: 200px; */
+        /* background-color: rgb(229, 22, 33); */
+        border-radius: 5px;
+        height:250px;
+    }
+    
+    .user-name-box{
+        height: 200px;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        border-radius: 5px;
+        width: 250px;
+        display:flex;
+        flex-direction:column;
+        font-size:1rem;
+        text-align: center;
+    }
+    
+    .user-name-box p{
+        /* padding-top: 50px; */
+        line-height: 1rem;
+    }
+    
+  .right-side-box2{
+        padding: 20px; 
+        height: 50%; 
+        /* background-color: greenyellow;  */
+        border-top-right-radius: 20px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    
+    }
+
+    .right-side-box1{
+       
+        height: 50%; 
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items:center;
+        font-size: 2rem;
+        color:white;
+        text-align:center;
+        
+    }
+    
+    .right-side-box-pomodoro, .right-side-box-progress{
+        /* padding: 20px; */
+        /* padding-bottom: 10px; */
+        height: 200px;
+        width: 70%;
+        /* background-color: rgb(255, 255, 255); */
+        border-radius: 5px;
+        justify-content: space-between;
+    }
+    
+    .right-side-box-calendar, .right-side-box-streak{
+        padding: 20px;
+        /* background-color: rgb(255, 255, 255); */
+        width: 30%;
+        height: 170px;
+        border-radius: 5px;
+        justify-self: space-between;
+        background-color: rgb(0, 0, 0);
+        color: white;
+    }
+    
+    /* .pomodoro-details{
+        padding: 0px;
+        border-radius: 5px;
+        height: 180px;
+        width: 100%;
+    } */
+    
+    .space{
+        width:5%;
+    }
+    
+    .progress-chart svg{
+        height: 200px;
+        width: 100%;
+      
+    
+    }
+    
+    .streak{
+       display:flex;
+       flex-direction: column;
+       justify-content:center;
+       align-items:center;
+       text-align:center;
+       
+    }
+    .streak span{
+        text-align: center;
+        font-size: 3rem;
+        font-weight:500;
+    }
