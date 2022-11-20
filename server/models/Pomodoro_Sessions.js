@@ -4,32 +4,33 @@ const pomodorodetails = new mongoose.Schema({
 
      name:{
          type: String,
-         required: true 
+         // required: true 
      },
 
      email:{
          type: String,
-         // required: true 
+         // // required: true 
      },
 
     goal_title:{
         type: String,
-        required: true
+        // required: true
     },
 
     start_dateTime:{
         type: String,
-        required: true 
+        // required: true 
     },
 
     end_dateTime:{
         type: String,
-        required: true 
+        // required: true 
     },
 
-    // start_time:{
-    //     type: String, 
-    //     required: true 
+    start_time:{
+         type: String, 
+    //     // required: true 
+    },
 // user1
 // name
 // email
@@ -42,30 +43,30 @@ const pomodorodetails = new mongoose.Schema({
 //     },
 //     ...
 // ]
-
-
-
-
     // },
-
-    pomodoro_duration:{
+pomodoro_duration:{
         type: Number,
-        required: true
+        // required: true
     },
 
     break_duration:{
         type: Number,
-        required: true 
+        // required: true 
     },
 
     no_sessions:{
         type: Number,
-        required: true 
+        // required: true 
     },
 
     no_days:{
         type: Number,
-        required: true 
+        // required: true 
+    },
+
+    daysfound:{
+        type: Array,
+        //required:true
     }
 });
 

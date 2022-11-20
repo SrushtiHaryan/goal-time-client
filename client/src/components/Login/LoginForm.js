@@ -4,27 +4,29 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import axios from "axios"
 import jwt_decode from "jwt-decode";
-
-
 import './LoginForm.css';
+
 // import Illustration from '../../components/Illustration/Illustration';
 
 // 1071314173715-a71ksf6t0sqlnt1su90a225jo89mae2d.apps.googleusercontent.com
 // 1071314173715-a71ksf6t0sqlnt1su90a225jo89mae2d.apps.googleusercontent.com
 // import {env} from 'process';
+
+
 const LoginForm = function () {
+
+  let [userName, setuserName] = useState("");
+  // let [email_id, setEmail_id] = useState("");
+
 
   let [userLogged, setLogged] = useState(false);
   let [buttonDisable, setButtonDisable] = useState(false);
-  let [userName, setuserName] = useState("");
 
   let userDetails;
 
   const [bData, setBData] = useState({});
 
-  // useEffect(() => {
 
-  // },[]);
 
   const handleLogin = function (googleData) {
 
@@ -58,10 +60,16 @@ const LoginForm = function () {
 
   const handleNameInput = (e) => {
 
-    setuserName(e.target.value)
-    if (e.target.value === "") {
+    if(e.target.value.trim()===""){
+      setuserName(e.target.value.trim())
+  }else{
+      setuserName(e.target.value)
+
+    }
+    if (e.target.value.trim() === " " || e.target.value.trim().length<2 || e.target.value.trim().length>20) {
       setButtonDisable(false);
-    } else {
+      
+    } else if(e.target.value.length>=5) {
       setButtonDisable(true);
     }
   }
@@ -120,12 +128,19 @@ const login = useGoogleLogin({
     console.log(userName)
 
     let userDetails={};
+
+    userName = userName.trim();
     userDetails.name = userName;
     userDetails.isGoog = false;
 
-    if (userName != "undefined") {
+    if (userName != "undefined" || userName != "" || userName != " ") {
       sendUserDetails(userDetails);
     }
+    // else if(userName.length < 5){
+
+    //   alert('The name is too short!');
+
+    // }
  }
 
   const handleFailure = function (result) {
@@ -144,7 +159,7 @@ const login = useGoogleLogin({
 
 
 
-        <button disabled={buttonDisable} onClick={() => login()} className={userLogged ? 'disappear-ele' : ""} >
+        <button disabled={buttonDisable} onClick={() =>login()} className={userLogged ? 'disappear-ele' : ""} >
 
           {userLogged ? 'You are all Set!' : "Sign in with Google 🚀"}
         </button>

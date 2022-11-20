@@ -5,6 +5,9 @@ import axios from 'axios';
 
 //num of sessions
 
+//first take the email
+//send the latest pomodoro session of the google user from app.js
+
 const Timer = () => {
 
     
@@ -15,13 +18,14 @@ const Timer = () => {
   let [breakSeconds, setBreakSeconds] = useState(5);
   let [minutes, setMinutes] = useState(0);
   let [seconds, setSeconds] = useState(0);
+  let [pomodoroComp, setPomodoroComp] = useState(0);
+  let [pomodoroFailed, setPomodoroFailed] = useState(0);
+  let [pomodoroCreated, setPomodoroCreated] = useState(0);
+  let [clickStart, setClickStart] = useState(0);
 
-  // let [breakMinutes, setBreakMinutes] = useState(breakMinutes);
-  // let [breakSeconds, setBreakSeconds] = useState(breakSeconds);
-  // let [timer, setTimer] = useState('25:00');
+  
   let [active, setActive] = useState('');
-  // let [active, setActive]=useState('pomodoro');
-
+  let [pomodoroOver, setPomodoroOver] = useState('');
 
   let [numOfPomo, setnumOfPomo] = useState(2);
   let [numOfPomoCovered, setnumOfPomoCovered] = useState(0);
@@ -34,6 +38,14 @@ const Timer = () => {
     setActive('pomodoro');
     setMinutes(pomodoroMinutes);
     setSeconds(pomodoroSeconds);
+    setClickStart(clickStart+1);
+
+
+    // if(clickStart+1>1 && (active=='pomodoro' || active=='pomo')){
+    //   setActive('incomplete');
+    // }
+    // setPomodoroCreated(pomodoroCreated+1);
+    // setPomodoroFailed(pomodoroFailed+1);
 
   }
 
@@ -45,18 +57,61 @@ const Timer = () => {
     
     
     axios.get('http://localhost:3000/pomodoro-timer').then(res => {
-      console.log(res)
+      console.log("Hello we are inside pomodoro-timer from user_data");
+      console.log(res.data)
       if(res.data.isGoog){
-        console.log("Form details entered");
+
+
+        // console.log("Form details entered");
         setPomodoroMinutes(res.data.durationPomo);
         setPomodoroSeconds(0);
         setBreakMinutes(res.data.durationBreak);
         setBreakSeconds(0);
         setnumOfPomo(res.data.numsession);
+        
+        
       }
-      // return res;
 
+      
+ 
     })
+      
+  }
+
+  // const getPomoDetails2 = () => {
+
+  //   let response;
+
+  //   console.log("Here I am ");
+
+    useEffect(() => {
+      axios.get('http://localhost:3000/pomodoro-timer-user-goals').then(res => {
+      console.log("Hello we are inside pomodoro-timer-dup from user_data");
+      console.log(res.data);
+      //  if(res.data.isGoog){
+         console.log("Form details entered");
+        setPomodoroComp(res.data.pomodoro_completed);
+        setPomodoroCreated(res.data.pomodoro_created+1);
+        setPomodoroFailed(res.data.pomodoro_failed+1);
+
+        console.log(res.data.pomodoro_completed);
+        console.log(typeof(res.data.pomodoro_completed));
+        console.log(res.data.pomodoro_created);
+        console.log(res.data.pomodoro_failed);
+
+        // axios.post('/pomo-progress',{
+        //   pomodorocompleted : pomodoroComp,
+        //   pomodorocreated : pomodoroCreated,
+        //  pomodorofailed : pomodoroFailed
+        // });  
+      //}
+      //If the user clicks on start, it will increase created by one 
+      //if the button is gone to completed, then the completed will increase by one 
+      //else the failed will increase by one 
+      // return res;
+ 
+   })
+  }, [pomodoroOver])
     // .then(res=>{
 
     //   axios.get(`https://www.googleapis.com/calendar/v3/calendars/${res.data.email}/events?key=AIzaSyBkBQC1accQPgI4P3QZYf6ZfRB6FVlrepE`)
@@ -65,7 +120,7 @@ const Timer = () => {
     //   })
 
     // })    
-  }
+  //}
 
 
   // const getStreak= () =>{
@@ -82,21 +137,40 @@ const Timer = () => {
     getPomoDetails()
 
   }, []);
+  // useEffect(() => {
+
+  //   getPomoDetails2()
+
+  // }, [active]);
 
 
   useEffect(() => {
 
     if (numOfPomo == numOfPomoCovered) { 
+
       setActiveSess('completed'); 
-      console.log(active);
+      console.log("In use effect");
+      setPomodoroComp(pomodoroComp+1);
+      console.log(pomodoroComp+1);
+      setPomodoroFailed(pomodoroFailed-1);
       setMinutes(0);
       setSeconds(0); 
+      setPomodoroOver("done");
       alert('Congratulations, you have completed the pomodoro');
+      console.log("The pomodoro over value is");
+      console.log(pomodoroOver)
+      console.log(active, pomodoroComp, pomodoroFailed, pomodoroCreated);
+      axios.post('/pomo-progress',{
+         pomodorocompleted : pomodoroComp,
+         pomodorocreated : pomodoroCreated,
+        pomodorofailed : pomodoroFailed
+       });   
 
-         
+
+}},[active]);
 
 
-}
+useEffect(() => {
 
     if (active === 'pomodoro' || active === 'break') {
       const timeCounter =

@@ -11,6 +11,11 @@ const User = () => {
     let [image, setImage] = useState("");
     let [email, setEmail] = useState("");
     let [name, setName] = useState("");
+
+     let [pomoCo, setpomoCo] = useState("");
+     let [pomoCr, setpomoCr] = useState("");
+     let [pomoF, setpomoF] = useState("");
+
     let [quote, setQuote] = useState("With Great Power Comes Great Responsibilty");
     let [x, setX] = useState(Math.floor(Math.random() * 1000));
     let [y, setY] = useState(0);
@@ -19,16 +24,27 @@ const User = () => {
     axios.get('http://localhost:3000/userprofile').then(response => {
         console.log(response)
 
+        
         setName(response.data.name);
 
         setEmail(response.data.email);
         
         setImage(response.data.image);
 
+         setpomoCo(response.data.pomoCo);
         
+         setpomoCr(response.data.pomoCr);
+
+         setpomoF(response.data.pomoF);
+        
+        console.log("Entry in the userdata page");
         console.log(name);
         console.log(email);
         console.log(image);
+         console.log(pomoCo);
+         console.log(pomoCr);
+         console.log(pomoF);
+        console.log("Exit in the userdata page");
     });
 
     axios.get('https://type.fit/api/quotes')
@@ -92,17 +108,17 @@ const User = () => {
                         {/* <img name="graph" src="\assets\images\goal-image\graph.png"/> */}
                         {/* <p>hola</p> */}
                         <PieChart data={[
-    { title: 'Pomodoro Completed', value: 1, color: '#04aa6d'},
-    { title: 'Pomodoro Created', value: 4, color: '#ffba01' },
-    { title: 'Pomodoro Failed', value: 3, color: '#da2a2a' },
-  ]} animate={true} />
+    { title: 'Pomodoro Completed', value: pomoCo, color: '#04aa6d'},
+    { title: 'Pomodoro Created', value:  pomoCr, color: '#ffba01' },
+    { title: 'Pomodoro Failed', value:  pomoF, color: '#da2a2a' },
+  ]} animate={true}/>
                     </div>
                 </div>
                 <div className="space"></div>
                 <div className="right-side-box-streak">
                     <div className="streak">
                         <p>Completed Pomodoro Sessions</p><br/>
-                        <span className="streak">1</span>
+                        <span className="streak">{pomoCo}</span>
                     </div>
             </div> 
             </div>

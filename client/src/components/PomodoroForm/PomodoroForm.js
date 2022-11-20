@@ -100,21 +100,31 @@ const Form = () => {
   setEndDate(eDate);
    }
 
-
-
+ 
+ 
     }
+let time,goalTitle;
 
     const handleTitle = (e) => {
-   let goalTitle = e.target.value;
+ goalTitle = e.target.value;
+
+ if(e.target.value!=""){
    setTitle(goalTitle);
+
+ }
     }
 
+
     const handleStartTime = (e) => {
-   let time = e.target.value;
+
+  time = e.target.value;
+  if(e.target.value!=""){
    setStartTime(time);
+  }
     }
 
     const handleSubmitPomodoro = (e)=>{
+  
    e.preventDefault();
 
    axios.post('/pomodoro-form',{
@@ -133,6 +143,8 @@ const Form = () => {
   
   axios.post('/pomodoro-timer', res.data)
 
+  console.log(res.data.redirect)
+
   if(res.data.redirect=='/pomodoro-timer'){
       window.location='/pomodoro-timer';
   }
@@ -141,11 +153,11 @@ const Form = () => {
     }
 return (
    <div className="pomodoro-form-container">
-  <form action='/pomodoro-form' method='post'>
+   <form action='/pomodoro-form' method='post'> 
 
 
       <label htmlFor="title" className="goal-title">Title for the Session
-     <input type="text" name="goal_title" className="title-input" value={title} onChange={handleTitle}></input>
+     <input type="text" name="goal_title" className="title-input" value={title} onChange={handleTitle} required></input>
       </label>
 
       <div className="pomo-dates">
@@ -153,14 +165,14 @@ return (
     <label htmlFor="start_pomo">Start Date
     </label>
     <div className="start-pomo-input">
-        <input type="date" name="dur_pomo" value={startDate} onChange={handleStartDate}></input>
+        <input type="date" name="dur_pomo" value={startDate} onChange={handleStartDate} required></input>
     </div>
      </div>
      <div className="start-time-pomo">
     <label htmlFor="start_time">Start Time
     </label>
     <div className="start-pomo-input">
-        <input type="time" name="start_pomo" value={startTime} onChange={handleStartTime}></input>
+        <input type="time" name="start_pomo" value={startTime} onChange={handleStartTime} required></input>
     </div>
      </div>
      <div className="end-date-pomo">
@@ -169,7 +181,7 @@ return (
     <label htmlFor="end_pomo">End Date
     </label>
     <div className="end-pomo-input">
-        <input type="date"  name="dur_break" value={endDate} onChange={handleEndDate} ></input>
+        <input type="date"  name="dur_break" value={endDate} onChange={handleEndDate} required></input>
     </div>
      </div>
       </div>
@@ -203,7 +215,7 @@ return (
     </label>
     <div className="sess-input">
         <span className="dec-button" onClick={decNumSession}>-</span>
-        <input type="text" name="num_pomo" className="num-pomo-input" value={numSess} readOnly ></input>
+        <input type="text" name="num_pomo" className="num-pomo-input" value={numSess} readOnly required></input>
         <span className="inc-button" onClick={incNumSession}>+</span>
     </div>
      </div>
@@ -212,18 +224,18 @@ return (
     </label>
     <div className="rep-input">
         <span className="dec-button" onClick={decRep}>-</span>
-        <input type="text" name="num_rep" className="num-pomo-input" value={numRep} readOnly ></input>
+        <input type="text" name="num_rep" className="num-pomo-input" value={numRep} readOnly required></input>
         <span className="inc-button" onClick={incRep}>+</span>
     </div>
      </div>
       </div>
 
-      <Link to='/pomodoro-timer'>
+    <Link to='/pomodoro-timer'> 
      <button className="create-pomodoro-btn" onClick={handleSubmitPomodoro}>Create Pomodoro</button>
-      </Link>
+      </Link> 
 
 
-  </form>
+  </form> 
    </div>
     )
 

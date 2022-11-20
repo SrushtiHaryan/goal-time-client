@@ -186,6 +186,8 @@ background-color: #f5f5dc;
     background-color: skyblue;
     padding: 0.7rem 0.6rem;
     border:none;
+    color: white;
+    text-decoration: none;
     width: 12rem;
     margin-left:15rem;
     border-radius:5px;
@@ -196,9 +198,14 @@ background-color: #f5f5dc;
     text-transform:uppercase;
     font-weight: 500;
 }
+
+.create-pomodoro-btn a{
+  text-decoration: none;
+  color: white;
+}
 .create-pomodoro-btn:hover{
     background-color: transparent;
-   
+   text-decoration: none;
     border:4px inset skyblue;
     color:white;
     
