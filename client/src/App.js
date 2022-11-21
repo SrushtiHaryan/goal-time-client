@@ -22,9 +22,9 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Homepage />} /> */}
           <Route path="/pomodoro-timer" exact element={<PomodoroTimer/>} />
-          <Route path="/" exact element={<PomodoroTimer/>} />
+          <Route path="/" exact element={<Login/>} />
           <Route path="/pomodoro-form" exact element={<PomodoroConfig/>} />
-          <Route path="/home" exact element={<Home/>} />
+          {/* <Route path="/home" exact element={<Home/>} /> */}
           <Route path="/login" exact element={<Login />} />
           <Route path="/quicknotes" exact element={<QuickNotes />} />
           <Route path="/userprofile" exact element={<UserProfile/>} />
