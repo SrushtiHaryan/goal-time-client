@@ -42,6 +42,11 @@ var database = mongoose.connection;
 var id, email, image, name, streak, progress, isGoogle, pomoCo, pomoCr, pomoF; //variables are out 
 
 
+
+app.get('/',(req,res)=>{
+
+    res.json({message:'This is connected backend'});
+})
 app.post('/login', (req, res) => {
     // res.json({ "message":"connected"})
     console.log('hey')
@@ -312,8 +317,10 @@ app.get("/userprofile", (req, res)=>{
     
 })
 
-app.listen(5000, () => {
-    console.log('Server listening on port 5000')
+const port = 5000;
+
+app.listen((process.env.PORT || port), () => {
+    console.log(`Server is running on port: ${port}`)
 })
 
 module.exports = app
